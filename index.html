@@ -3,176 +3,228 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tyler | Digital Resume</title>
-<meta name="description" content="Student digital resume: marketing coursework and self-taught Python projects in trading and data analysis.">
+<title>Tyler | Portfolio</title>
+<meta name="description" content="Marketing student and self-taught Python developer building data-driven tools for trading and market analysis.">
 <style>
   :root {
-    --desk: #e4e7e5;
-    --paper: #ffffff;
-    --ink: #1c2024;
-    --muted: #5b6470;
-    --rule: #d9ded9;
-    --side: #f0f4f1;
+    --bg: #f6f8f6;
+    --surface: #ffffff;
+    --ink: #18201c;
+    --muted: #59665f;
+    --line: #dbe2dd;
     --accent: #2f5d50;
+    --accent-soft: #e3efe9;
+    --hero-bg: #1f3d34;
+    --hero-ink: #f2f7f4;
+    --hero-muted: #b7cdc3;
+    --gold: #e8b64a;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --desk: #0f1412;
-      --paper: #171e1b;
+      --bg: #0f1412;
+      --surface: #171e1b;
       --ink: #e9efeb;
       --muted: #9fb0a8;
-      --rule: #2b3833;
-      --side: #1d2723;
+      --line: #2b3833;
       --accent: #7fc4ab;
+      --accent-soft: #22322c;
+      --hero-bg: #13201b;
+      --hero-ink: #f2f7f4;
+      --hero-muted: #a9c2b7;
     }
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--desk);
-    color: var(--ink);
-    font: 1rem/1.55 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    padding: 2rem 1rem;
-  }
+  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
   a { color: var(--accent); }
-  a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+  a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-  .sheet {
-    max-width: 58rem;
-    margin: 0 auto;
-    background: var(--paper);
-    box-shadow: 0 2px 18px rgba(0,0,0,.12);
-  }
-  .top { padding: 2.5rem 2.5rem 1.5rem; border-bottom: 3px solid var(--accent); }
-  h1 { font: 700 clamp(2.2rem, 6vw, 3.2rem)/1.05 Georgia, "Iowan Old Style", serif; margin: 0 0 .35rem; letter-spacing: -0.01em; }
-  .role { margin: 0; color: var(--muted); font-size: 1.1rem; }
+  /* Navigation */
+  nav { position: sticky; top: 0; z-index: 10; background: var(--hero-bg); border-bottom: 1px solid rgba(255,255,255,.1); }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: .8rem; padding-bottom: .8rem; }
+  nav .brand { color: var(--hero-ink); font: 700 1.15rem Georgia, "Iowan Old Style", serif; text-decoration: none; }
+  nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+  nav ul a { color: var(--hero-muted); text-decoration: none; font-weight: 600; }
+  nav ul a:hover { color: var(--hero-ink); }
 
-  .cols { display: grid; grid-template-columns: 17rem 1fr; }
-  aside { background: var(--side); padding: 1.75rem 1.75rem 2rem 2.5rem; }
-  main { padding: 1.75rem 2.5rem 2.5rem 2rem; }
+  /* Header */
+  .hero { background: var(--hero-bg); color: var(--hero-ink); padding: 4rem 0 4.5rem; }
+  .hero .wrap { display: grid; grid-template-columns: 1fr 19rem; gap: 3.5rem; align-items: center; }
+  .hero h1 { font: 700 clamp(3rem, 8vw, 5.2rem)/1 Georgia, "Iowan Old Style", serif; letter-spacing: -0.02em; margin: 0 0 .6rem; }
+  .role { color: var(--hero-muted); font-size: 1.15rem; margin: 0 0 1.6rem; }
+  .statement { font: 1.45rem/1.45 Georgia, "Iowan Old Style", serif; max-width: 34rem; margin: 0 0 2rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
+  .btn { display: inline-block; padding: .75rem 1.3rem; border-radius: 6px; font-weight: 700; text-decoration: none; }
+  .btn.primary { background: var(--gold); color: #1c1a10; }
+  .btn.ghost { border: 2px solid var(--hero-muted); color: var(--hero-ink); }
+  .btn:hover { filter: brightness(1.08); }
+  .photo { position: relative; }
+  .photo::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 3px solid var(--gold); border-radius: 12px; }
+  .photo img { position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 12px; background: var(--accent-soft); }
 
-  h2 {
-    font: 700 1.05rem/1.2 Georgia, "Iowan Old Style", serif;
-    margin: 0 0 .6rem; padding-bottom: .3rem;
-    border-bottom: 1px solid var(--rule);
-  }
-  section { margin-bottom: 1.75rem; }
-  section:last-child { margin-bottom: 0; }
+  /* Sections */
+  section { padding: 4rem 0 1rem; }
+  h2 { font: 700 2rem/1.15 Georgia, "Iowan Old Style", serif; margin: 0 0 .4rem; }
+  .section-intro { color: var(--muted); margin: 0 0 1.75rem; }
 
-  aside ul { list-style: none; margin: 0; padding: 0; }
-  aside li { margin-bottom: .35rem; }
-  aside p { margin: 0 0 .5rem; }
-  .school { font-weight: 700; margin: 0; }
-  .small { color: var(--muted); font-size: .92rem; margin: 0; }
-  .skill-label { font-weight: 700; font-size: .92rem; margin: .9rem 0 .25rem; }
-  .skill-label:first-of-type { margin-top: 0; }
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
+  .skill-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.3rem 1.4rem; }
+  .skill-card h3 { margin: 0 0 .8rem; font-size: 1.1rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
+  .tags li { background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .92rem; padding: .3rem .75rem; border-radius: 999px; }
 
-  .statement { font: 1.3rem/1.45 Georgia, "Iowan Old Style", serif; margin: 0; }
+  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.25rem; }
+  .project { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 10px; padding: 1.4rem; }
+  .project h3 { margin: 0 0 .6rem; font-size: 1.2rem; line-height: 1.25; }
+  .project p { margin: 0 0 1.1rem; color: var(--muted); }
+  .project .tags { margin-bottom: 1.1rem; }
+  .project .tags li { background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-weight: 500; }
+  .project a { margin-top: auto; font-weight: 700; }
 
-  .project { margin-bottom: 1.4rem; }
-  .project:last-child { margin-bottom: 0; }
-  .project h3 { font-size: 1.05rem; margin: 0; }
-  .project p { margin: .2rem 0 .3rem; }
-  .project .stack { color: var(--muted); font-size: .92rem; margin: 0 0 .3rem; }
-  .project a { font-weight: 600; }
+  .edu { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem 1.6rem; }
+  .edu .school { font: 700 1.3rem Georgia, "Iowan Old Style", serif; margin: 0; }
+  .edu p { margin: .25rem 0 0; color: var(--muted); }
 
-  @media (max-width: 42rem) {
-    body { padding: 0; }
-    .cols { grid-template-columns: 1fr; }
-    .top, aside, main { padding-left: 1.25rem; padding-right: 1.25rem; }
-  }
-  @media print {
-    body { background: #fff; padding: 0; }
-    .sheet { box-shadow: none; max-width: none; }
-    a { color: inherit; }
+  /* Contact */
+  .contact { background: var(--hero-bg); color: var(--hero-ink); margin-top: 4.5rem; padding: 3.5rem 0; }
+  .contact h2 { margin-bottom: 1rem; }
+  .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .8rem 2rem; }
+  .contact a { color: var(--gold); font-weight: 600; }
+  .copy { color: var(--hero-muted); font-size: .92rem; margin: 2rem 0 0; }
+
+  @media (max-width: 46rem) {
+    .hero { padding: 2.5rem 0 3.5rem; }
+    .hero .wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .photo { order: -1; max-width: 15rem; margin-right: 14px; }
+    nav ul { gap: .9rem; }
+    nav ul a { font-size: .95rem; }
   }
 </style>
 </head>
 <body>
-<div class="sheet">
 
-  <header class="top">
-    <h1>Tyler</h1>
-    <p class="role">Marketing student and self-taught Python developer</p>
-  </header>
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Tyler</a>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <div class="cols">
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Tyler</h1>
+      <p class="role">Marketing student and self-taught Python developer</p>
+      <!-- PERSONAL STATEMENT: keep it to one sentence. -->
+      <p class="statement">I'm a marketing student and self-taught Python developer who builds data-driven tools for trading and market analysis.</p>
+      <div class="actions">
+        <a class="btn primary" href="#projects">View my projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="photo">
+      <img src="headshot.jpg" alt="Headshot of Tyler" width="600" height="750">
+    </div>
+  </div>
+</header>
 
-    <aside>
-      <section>
-        <h2>Contact</h2>
-        <ul>
-          <li><a href="mailto:you@example.com">you@example.com</a></li>
-          <li><a href="https://github.com/YOUR-USERNAME">github.com/YOUR-USERNAME</a></li>
-          <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
-        </ul>
-      </section>
+<main>
+  <section id="skills">
+    <div class="wrap">
+      <h2>Skills</h2>
+      <p class="section-intro">What I can bring to a team.</p>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <h3>Technical</h3>
+          <ul class="tags">
+            <li>Python</li>
+            <li>Data analysis and backtesting</li>
+            <li>API integration</li>
+            <li>Git and GitHub</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Business</h3>
+          <ul class="tags">
+            <li>Marketing fundamentals</li>
+            <li>Risk management</li>
+            <li>Market research</li>
+          </ul>
+        </div>
+        <div class="skill-card">
+          <h3>Professional</h3>
+          <ul class="tags">
+            <li>Independent problem solving</li>
+            <li>Debugging and iteration</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <section>
-        <h2>Education</h2>
-        <p class="school">Your University Name</p>
-        <p class="small">B.S. in Your Major</p>
-        <p class="small">Expected graduation: Month Year</p>
-        <p class="small" style="margin-top:.5rem">Coursework: Marketing Principles, Consumer Behavior</p>
-      </section>
-
-      <section>
-        <h2>Skills</h2>
-        <p class="skill-label">Technical</p>
-        <ul>
-          <li>Python</li>
-          <li>Data analysis and backtesting</li>
-          <li>API integration</li>
-          <li>Git and GitHub</li>
-        </ul>
-        <p class="skill-label">Business</p>
-        <ul>
-          <li>Marketing fundamentals</li>
-          <li>Risk management</li>
-          <li>Market research</li>
-        </ul>
-        <p class="skill-label">Professional</p>
-        <ul>
-          <li>Independent problem solving</li>
-          <li>Debugging and iteration</li>
-        </ul>
-      </section>
-    </aside>
-
-    <main>
-      <section>
-        <h2>Summary</h2>
-        <!-- PERSONAL STATEMENT: keep it to one sentence. -->
-        <p class="statement">I'm a marketing student and self-taught Python developer who builds data-driven tools for trading and market analysis.</p>
-      </section>
-
-      <section>
-        <h2>Projects</h2>
+  <section id="projects">
+    <div class="wrap">
+      <h2>Projects</h2>
+      <p class="section-intro">Tools I built to solve real problems in trading and market analysis.</p>
+      <div class="project-grid">
 
         <article class="project">
           <h3>Options Trading Algorithm</h3>
-          <p class="stack">Python, Alpaca API</p>
+          <ul class="tags"><li>Python</li><li>Alpaca API</li></ul>
           <p>Trades options using volatility forecasts (GARCH), a fitted volatility surface, and portfolio risk limits, and was validated with a walk-forward backtester.</p>
-          <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-1">View code</a>
+          <a href="https://github.com/tls248-dotcom/YOUR-REPO-1">View code</a>
         </article>
 
         <article class="project">
           <h3>Sports Betting Value Finder</h3>
-          <p class="stack">Python, The Odds API</p>
+          <ul class="tags"><li>Python</li><li>The Odds API</li></ul>
           <p>Compares odds across sportsbooks to find positive expected value bets, removes the bookmaker's margin, and sizes stakes with the Kelly criterion.</p>
-          <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-2">View code</a>
+          <a href="https://github.com/tls248-dotcom/YOUR-REPO-2">View code</a>
         </article>
 
         <article class="project">
           <h3>Small-Cap Momentum Trading Bot</h3>
-          <p class="stack">Python, Interactive Brokers API</p>
+          <ul class="tags"><li>Python</li><li>Interactive Brokers API</li></ul>
           <p>Scans for small-cap momentum setups and places trades automatically, tested on a paper trading account before any real use.</p>
-          <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-3">View code</a>
+          <a href="https://github.com/tls248-dotcom/YOUR-REPO-3">View code</a>
         </article>
-      </section>
-    </main>
 
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <h2>Education</h2>
+      <div class="edu">
+        <p class="school">Your University Name</p>
+        <p>B.S. in Your Major</p>
+        <p>Expected graduation: Month Year</p>
+        <p>Coursework: Marketing Principles, Consumer Behavior</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="contact" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <ul>
+      <li><a href="mailto:you@example.com">you@example.com</a></li>
+      <li><a href="https://github.com/tls248-dotcom">GitHub</a></li>
+      <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
+    </ul>
+    <p class="copy">&copy; <span id="year"></span> Tyler</p>
   </div>
-</div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
