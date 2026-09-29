@@ -3,103 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tyler | Portfolio</title>
-<meta name="description" content="Marketing student and self-taught Python developer building data-driven tools for trading and market analysis.">
+<title>Tyler | Finance Student and Python Developer</title>
+<meta name="description" content="Finance student and self-taught Python developer building data-driven tools for trading and market analysis.">
 <style>
   :root {
-    --bg: #f6f8f6;
-    --surface: #ffffff;
-    --ink: #18201c;
-    --muted: #59665f;
-    --line: #dbe2dd;
-    --accent: #2f5d50;
-    --accent-soft: #e3efe9;
-    --hero-bg: #1f3d34;
-    --hero-ink: #f2f7f4;
-    --hero-muted: #b7cdc3;
-    --gold: #e8b64a;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #0f1412;
-      --surface: #171e1b;
-      --ink: #e9efeb;
-      --muted: #9fb0a8;
-      --line: #2b3833;
-      --accent: #7fc4ab;
-      --accent-soft: #22322c;
-      --hero-bg: #13201b;
-      --hero-ink: #f2f7f4;
-      --hero-muted: #a9c2b7;
-    }
+    --navy: #0d1b2a;
+    --navy-2: #15293d;
+    --ink: #10202f;
+    --muted: #55677a;
+    --bg: #f4f7fa;
+    --card: #ffffff;
+    --line: #dce4ec;
+    --green: #0e8f63;
+    --green-soft: #e0f3ea;
+    --on-navy: #eef3f8;
+    --on-navy-muted: #9db2c6;
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
-  a { color: var(--accent); }
-  a:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
-  .wrap { max-width: 64rem; margin: 0 auto; padding: 0 1.5rem; }
+  html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--green); }
+  a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
 
   /* Navigation */
-  nav { position: sticky; top: 0; z-index: 10; background: var(--hero-bg); border-bottom: 1px solid rgba(255,255,255,.1); }
-  nav .wrap { display: flex; justify-content: space-between; align-items: center; padding-top: .8rem; padding-bottom: .8rem; }
-  nav .brand { color: var(--hero-ink); font: 700 1.15rem Georgia, "Iowan Old Style", serif; text-decoration: none; }
-  nav ul { display: flex; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
-  nav ul a { color: var(--hero-muted); text-decoration: none; font-weight: 600; }
-  nav ul a:hover { color: var(--hero-ink); }
+  nav { position: sticky; top: 0; z-index: 20; background: rgba(13,27,42,.96); backdrop-filter: blur(6px); }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+  .brand { color: var(--on-navy); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; }
+  nav ul { display: flex; gap: 1.75rem; list-style: none; margin: 0; padding: 0; }
+  nav ul a { color: var(--on-navy-muted); font-weight: 600; text-decoration: none; padding: .4rem 0; border-bottom: 2px solid transparent; }
+  nav ul a:hover { color: var(--on-navy); border-bottom-color: var(--green); }
 
   /* Header */
-  .hero { background: var(--hero-bg); color: var(--hero-ink); padding: 4rem 0 4.5rem; }
-  .hero .wrap { display: grid; grid-template-columns: 1fr 19rem; gap: 3.5rem; align-items: center; }
-  .hero h1 { font: 700 clamp(3rem, 8vw, 5.2rem)/1 Georgia, "Iowan Old Style", serif; letter-spacing: -0.02em; margin: 0 0 .6rem; }
-  .role { color: var(--hero-muted); font-size: 1.15rem; margin: 0 0 1.6rem; }
-  .statement { font: 1.45rem/1.45 Georgia, "Iowan Old Style", serif; max-width: 34rem; margin: 0 0 2rem; }
-  .actions { display: flex; flex-wrap: wrap; gap: .8rem; }
-  .btn { display: inline-block; padding: .75rem 1.3rem; border-radius: 6px; font-weight: 700; text-decoration: none; }
-  .btn.primary { background: var(--gold); color: #1c1a10; }
-  .btn.ghost { border: 2px solid var(--hero-muted); color: var(--hero-ink); }
-  .btn:hover { filter: brightness(1.08); }
-  .photo { position: relative; }
-  .photo::before { content: ""; position: absolute; inset: 14px -14px -14px 14px; border: 3px solid var(--gold); border-radius: 12px; }
-  .photo img { position: relative; display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center top; border-radius: 12px; background: var(--accent-soft); }
+  .hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--navy) 55%, var(--navy-2)); color: var(--on-navy); padding: 5.5rem 0 6rem; }
+  .hero .chart { position: absolute; inset: auto 0 0 0; width: 100%; height: 55%; opacity: .5; pointer-events: none; }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 4rem; align-items: center; }
+  .kicker { display: inline-block; background: rgba(14,143,99,.2); color: #6fe0b4; font-weight: 700; font-size: .95rem; padding: .35rem .9rem; border-radius: 999px; margin: 0 0 1.4rem; }
+  h1 { font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1.02; letter-spacing: -0.035em; font-weight: 800; margin: 0 0 1.4rem; }
+  .statement { font-size: 1.4rem; line-height: 1.5; color: var(--on-navy-muted); max-width: 33rem; margin: 0 0 2.2rem; }
+  .statement strong { color: var(--on-navy); font-weight: 600; }
+  .actions { display: flex; flex-wrap: wrap; gap: .9rem; }
+  .btn { display: inline-block; padding: .85rem 1.5rem; border-radius: 8px; font-weight: 700; text-decoration: none; }
+  .btn.solid { background: var(--green); color: #fff; }
+  .btn.line { border: 2px solid #3a5169; color: var(--on-navy); }
+  .btn:hover { filter: brightness(1.12); }
+  .portrait { justify-self: center; position: relative; width: min(20rem, 70vw); aspect-ratio: 1; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 10px rgba(255,255,255,.07), 0 24px 60px rgba(0,0,0,.4); overflow: hidden; display: grid; place-items: center; }
+  .portrait span { position: absolute; font-size: 6rem; font-weight: 800; color: rgba(255,255,255,.85); }
+  .portrait img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
 
   /* Sections */
-  section { padding: 4rem 0 1rem; }
-  h2 { font: 700 2rem/1.15 Georgia, "Iowan Old Style", serif; margin: 0 0 .4rem; }
-  .section-intro { color: var(--muted); margin: 0 0 1.75rem; }
+  section { padding: 5rem 0; }
+  section.alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800; margin: 0 0 .6rem; }
+  .intro { color: var(--muted); font-size: 1.15rem; max-width: 36rem; margin: 0 0 2.5rem; }
 
-  .skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1.25rem; }
-  .skill-card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.3rem 1.4rem; }
-  .skill-card h3 { margin: 0 0 .8rem; font-size: 1.1rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 1.75rem; }
+  section.alt .card { background: var(--bg); }
+  .card h3 { font-size: 1.15rem; margin: 0 0 1rem; }
   .tags { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: 0; }
-  .tags li { background: var(--accent-soft); color: var(--accent); font-weight: 600; font-size: .92rem; padding: .3rem .75rem; border-radius: 999px; }
+  .tags li { background: var(--green-soft); color: #0a6b4a; font-weight: 600; font-size: .93rem; padding: .35rem .85rem; border-radius: 999px; }
 
-  .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr)); gap: 1.25rem; }
-  .project { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-top: 5px solid var(--accent); border-radius: 10px; padding: 1.4rem; }
-  .project h3 { margin: 0 0 .6rem; font-size: 1.2rem; line-height: 1.25; }
-  .project p { margin: 0 0 1.1rem; color: var(--muted); }
-  .project .tags { margin-bottom: 1.1rem; }
-  .project .tags li { background: var(--bg); color: var(--ink); border: 1px solid var(--line); font-weight: 500; }
-  .project a { margin-top: auto; font-weight: 700; }
+  .project { display: flex; flex-direction: column; transition: transform .2s ease, box-shadow .2s ease; }
+  .project:hover { transform: translateY(-4px); box-shadow: 0 14px 30px rgba(13,27,42,.1); }
+  .project .stack { margin-bottom: 1rem; }
+  .project .stack li { background: var(--navy); color: var(--on-navy); font-weight: 500; }
+  .project h3 { font-size: 1.3rem; line-height: 1.25; margin-bottom: .7rem; }
+  .project p { color: var(--muted); margin: 0 0 1.5rem; }
+  .project .more { margin-top: auto; font-weight: 700; text-decoration: none; }
+  .project .more:hover { text-decoration: underline; }
 
-  .edu { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem 1.6rem; }
-  .edu .school { font: 700 1.3rem Georgia, "Iowan Old Style", serif; margin: 0; }
-  .edu p { margin: .25rem 0 0; color: var(--muted); }
+  .edu { display: flex; align-items: center; gap: 1.5rem; }
+  .edu .badge { flex: none; width: 4rem; height: 4rem; border-radius: 12px; background: var(--navy); color: #6fe0b4; display: grid; place-items: center; font-weight: 800; font-size: 1.6rem; }
+  .edu h3 { margin: 0; font-size: 1.3rem; }
+  .edu p { margin: .2rem 0 0; color: var(--muted); }
 
   /* Contact */
-  .contact { background: var(--hero-bg); color: var(--hero-ink); margin-top: 4.5rem; padding: 3.5rem 0; }
-  .contact h2 { margin-bottom: 1rem; }
-  .contact ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .8rem 2rem; }
-  .contact a { color: var(--gold); font-weight: 600; }
-  .copy { color: var(--hero-muted); font-size: .92rem; margin: 2rem 0 0; }
+  .contact { background: var(--navy); color: var(--on-navy); text-align: center; padding: 5rem 0 3rem; }
+  .contact h2 { margin-bottom: .8rem; }
+  .contact .intro { color: var(--on-navy-muted); margin: 0 auto 2rem; }
+  .copy { color: var(--on-navy-muted); font-size: .92rem; margin: 3.5rem 0 0; }
 
-  @media (max-width: 46rem) {
-    .hero { padding: 2.5rem 0 3.5rem; }
+  @media (max-width: 48rem) {
+    .hero { padding: 3.5rem 0 4.5rem; }
     .hero .wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-    .photo { order: -1; max-width: 15rem; margin-right: 14px; }
-    nav ul { gap: .9rem; }
+    .portrait { order: -1; width: 12rem; justify-self: start; }
+    nav ul { gap: 1.1rem; }
     nav ul a { font-size: .95rem; }
+    section { padding: 3.5rem 0; }
+  }
+  @media (max-width: 30rem) {
+    .brand { display: none; }
+    nav .wrap { justify-content: center; }
   }
 </style>
 </head>
@@ -118,19 +114,24 @@
 </nav>
 
 <header class="hero" id="top">
+  <svg class="chart" viewBox="0 0 1200 300" preserveAspectRatio="none" aria-hidden="true">
+    <polyline fill="none" stroke="#0e8f63" stroke-width="3" points="0,250 90,230 170,242 260,190 340,205 430,150 510,168 600,110 690,130 780,80 870,98 960,50 1050,70 1200,20"/>
+    <polyline fill="none" stroke="#2c4660" stroke-width="2" points="0,270 100,262 200,268 300,240 400,250 500,222 600,232 700,205 800,214 900,190 1000,198 1100,170 1200,160"/>
+  </svg>
   <div class="wrap">
     <div>
-      <h1>Tyler</h1>
-      <p class="role">Marketing student and self-taught Python developer</p>
+      <p class="kicker">Finance student</p>
+      <h1>Hi, I'm Tyler.</h1>
       <!-- PERSONAL STATEMENT: keep it to one sentence. -->
-      <p class="statement">I'm a marketing student and self-taught Python developer who builds data-driven tools for trading and market analysis.</p>
+      <p class="statement">I'm a <strong>finance student and self-taught Python developer</strong> who builds data-driven tools for trading and market analysis.</p>
       <div class="actions">
-        <a class="btn primary" href="#projects">View my projects</a>
-        <a class="btn ghost" href="#contact">Get in touch</a>
+        <a class="btn solid" href="#projects">View my projects</a>
+        <a class="btn line" href="#contact">Get in touch</a>
       </div>
     </div>
-    <div class="photo">
-      <img src="headshot.jpg" alt="Headshot of Tyler" width="600" height="750">
+    <div class="portrait">
+      <span aria-hidden="true">T</span>
+      <img src="headshot.jpg" alt="Headshot of Tyler" onerror="this.remove()">
     </div>
   </div>
 </header>
@@ -139,61 +140,67 @@
   <section id="skills">
     <div class="wrap">
       <h2>Skills</h2>
-      <p class="section-intro">What I can bring to a team.</p>
-      <div class="skill-grid">
-        <div class="skill-card">
+      <p class="intro">The tools and ways of thinking I bring to a finance team.</p>
+      <div class="cards">
+        <div class="card">
           <h3>Technical</h3>
           <ul class="tags">
             <li>Python</li>
-            <li>Data analysis and backtesting</li>
+            <li>Data analysis</li>
+            <li>Backtesting</li>
             <li>API integration</li>
             <li>Git and GitHub</li>
           </ul>
         </div>
-        <div class="skill-card">
-          <h3>Business</h3>
+        <div class="card">
+          <h3>Finance</h3>
           <ul class="tags">
-            <li>Marketing fundamentals</li>
+            <li>Financial markets</li>
+            <li>Options and volatility</li>
             <li>Risk management</li>
-            <li>Market research</li>
+            <li>Position sizing</li>
           </ul>
         </div>
-        <div class="skill-card">
+        <div class="card">
           <h3>Professional</h3>
           <ul class="tags">
             <li>Independent problem solving</li>
             <li>Debugging and iteration</li>
+            <li>Self-directed learning</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="alt">
     <div class="wrap">
       <h2>Projects</h2>
-      <p class="section-intro">Tools I built to solve real problems in trading and market analysis.</p>
-      <div class="project-grid">
+      <p class="intro">Tools I built to test ideas and manage risk in the markets.</p>
+      <div class="cards">
 
-        <article class="project">
+        <article class="card project">
+          <ul class="tags stack"><li>Python</li><li>Alpaca API</li></ul>
           <h3>Options Trading Algorithm</h3>
-          <ul class="tags"><li>Python</li><li>Alpaca API</li></ul>
           <p>Trades options using volatility forecasts (GARCH), a fitted volatility surface, and portfolio risk limits, and was validated with a walk-forward backtester.</p>
-          <a href="https://github.com/tls248-dotcom/YOUR-REPO-1">View code</a>
+          <!-- Swap the link below for this project's own repo once it is public -->
+          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
         </article>
 
-        <article class="project">
+        <article class="card project">
+          <ul class="tags stack"><li>Python</li><li>The Odds API</li></ul>
           <h3>Sports Betting Value Finder</h3>
-          <ul class="tags"><li>Python</li><li>The Odds API</li></ul>
           <p>Compares odds across sportsbooks to find positive expected value bets, removes the bookmaker's margin, and sizes stakes with the Kelly criterion.</p>
-          <a href="https://github.com/tls248-dotcom/YOUR-REPO-2">View code</a>
+          <!-- Swap the link below for this project's own repo once it is public -->
+          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
         </article>
 
-        <article class="project">
+        <article class="card project">
+          <ul class="tags stack"><li>Python</li><li>Interactive Brokers API</li></ul>
           <h3>Small-Cap Momentum Trading Bot</h3>
-          <ul class="tags"><li>Python</li><li>Interactive Brokers API</li></ul>
           <p>Scans for small-cap momentum setups and places trades automatically, tested on a paper trading account before any real use.</p>
-          <a href="https://github.com/tls248-dotcom/YOUR-REPO-3">View code</a>
+          <!-- Swap the link below for this project's own repo once it is public -->
+          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
         </article>
 
       </div>
@@ -203,11 +210,15 @@
   <section id="education">
     <div class="wrap">
       <h2>Education</h2>
-      <div class="edu">
-        <p class="school">Your University Name</p>
-        <p>B.S. in Your Major</p>
-        <p>Expected graduation: Month Year</p>
-        <p>Coursework: Marketing Principles, Consumer Behavior</p>
+      <p class="intro">Where I'm building the foundation.</p>
+      <div class="card edu">
+        <div class="badge" aria-hidden="true">$</div>
+        <div>
+          <!-- Add your university, degree, and graduation date here, for example:
+               <p>Your University, Expected May 2027</p> -->
+          <h3>Studying Finance</h3>
+          <p>Coursework in financial markets and investments, paired with hands-on Python projects.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -215,12 +226,11 @@
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <h2>Contact</h2>
-    <ul>
-      <li><a href="mailto:you@example.com">you@example.com</a></li>
-      <li><a href="https://github.com/tls248-dotcom">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/YOUR-PROFILE">LinkedIn</a></li>
-    </ul>
+    <h2>Let's connect</h2>
+    <p class="intro">Looking for internships and finance roles. See my code on GitHub.</p>
+    <!-- To add your email, add another button:
+         <a class="btn line" href="mailto:your-email@example.com">Email me</a> -->
+    <a class="btn solid" href="https://github.com/tls248-dotcom">GitHub profile</a>
     <p class="copy">&copy; <span id="year"></span> Tyler</p>
   </div>
 </footer>
