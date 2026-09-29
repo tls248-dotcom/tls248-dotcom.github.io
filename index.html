@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tyler | Portfolio</title>
+<meta name="description" content="Personal portfolio: algorithmic trading systems built in Python.">
+<style>
+  :root {
+    --bg: #f5f7f9;
+    --surface: #ffffff;
+    --ink: #16222c;
+    --muted: #56646f;
+    --line: #d6dde3;
+    --accent: #0b5e7e;
+    --mark: #f2b134;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10181f;
+      --surface: #182430;
+      --ink: #e8eef3;
+      --muted: #9aabb8;
+      --line: #2a3a48;
+      --accent: #5cb8da;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 1.0625rem/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--accent); }
+  a:focus-visible { outline: 3px solid var(--mark); outline-offset: 2px; }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  nav { background: var(--surface); border-bottom: 1px solid var(--line); }
+  nav .wrap { display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; padding-top: .9rem; padding-bottom: .9rem; }
+  nav a { color: var(--ink); text-decoration: none; font-weight: 600; }
+  nav a:hover { color: var(--accent); }
+
+  header.hero { background: var(--surface); border-bottom: 6px solid var(--mark); padding: 4.5rem 0 3.25rem; }
+  h1 { font: 700 clamp(2.4rem, 7vw, 4rem)/1.05 Georgia, "Iowan Old Style", serif; letter-spacing: -0.02em; margin: 0 0 1.25rem; }
+  .statement { font-size: 1.35rem; line-height: 1.45; max-width: 38rem; margin: 0; }
+
+  section { padding: 3rem 0 .5rem; }
+  h2 { font: 700 1.7rem/1.2 Georgia, "Iowan Old Style", serif; margin: 0 0 1.25rem; }
+
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1rem; }
+  .skill-group { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); padding: 1rem 1.1rem; }
+  .skill-group h3 { margin: 0 0 .5rem; font-size: 1.05rem; }
+  .skill-group ul { margin: 0; padding-left: 1.1rem; }
+
+  .project { background: var(--surface); border: 1px solid var(--line); padding: 1.25rem 1.4rem; margin-bottom: 1rem; }
+  .project h3 { margin: 0 0 .4rem; font-size: 1.2rem; }
+  .project p { margin: 0 0 .75rem; color: var(--muted); }
+  .project .links { display: flex; gap: 1.25rem; font-weight: 600; }
+
+  footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid var(--line); color: var(--muted); }
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Tyler</h1>
+    <!-- PERSONAL STATEMENT: one sentence. Edit to fit you. -->
+    <p class="statement">I'm a Python developer and active trader who builds algorithmic trading systems that turn market data into disciplined, automated decisions.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <ul>
+          <li>Python</li>
+          <li>Data analysis</li>
+          <li>Git and GitHub</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Trading Systems</h3>
+        <ul>
+          <li>Algorithmic strategy design</li>
+          <li>Backtesting (QuantConnect LEAN)</li>
+          <li>Broker API integration (Interactive Brokers)</li>
+        </ul>
+      </div>
+      <div class="skill-group">
+        <h3>Professional</h3>
+        <ul>
+          <li>Risk management</li>
+          <li>Independent problem solving</li>
+          <li>Debugging and iteration</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <h3>Small-Cap Momentum Trading Bot</h3>
+      <p>A Python algorithm that scans for small-cap momentum setups and places trades through the Interactive Brokers API, tested on a paper trading account.</p>
+      <div class="links">
+        <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-1">Code</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <h3>Smart Money Signal Scanner</h3>
+      <p>A scanner that watches index futures for smart money concept setups and sends real-time alerts to Telegram, paired with a backtest to check how the signals performed.</p>
+      <div class="links">
+        <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-2">Code</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <h3>Multi-Timeframe Backtest on QuantConnect</h3>
+      <p>A port of a live confidence-scoring scanner into a QuantConnect LEAN backtest, so the strategy's multi-timeframe logic can be measured on historical data.</p>
+      <div class="links">
+        <a href="https://github.com/YOUR-USERNAME/YOUR-REPO-3">Code</a>
+      </div>
+    </article>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:you@example.com">you@example.com</a><br>
+    GitHub: <a href="https://github.com/YOUR-USERNAME">github.com/YOUR-USERNAME</a></p>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">&copy; <span id="year"></span> Tyler</div>
+</footer>
+
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
