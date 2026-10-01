@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tyler | Finance Student and Python Developer</title>
-<meta name="description" content="Finance student at Rutgers and self-taught Python developer building data-driven tools for trading and market analysis.">
+<title>Tyler | Finance Student at Rutgers</title>
+<meta name="description" content="Finance student at Rutgers focused on financial analysis, valuation, risk management, and markets.">
 <style>
   :root {
     --navy: #0d1b2a;
@@ -27,7 +27,6 @@
   a:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
   .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.5rem; }
 
-  /* Navigation */
   nav { position: sticky; top: 0; z-index: 20; background: rgba(13,27,42,.96); backdrop-filter: blur(6px); }
   nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
   .brand { color: var(--on-navy); font-weight: 800; font-size: 1.15rem; letter-spacing: -0.01em; text-decoration: none; }
@@ -35,7 +34,6 @@
   nav ul a { color: var(--on-navy-muted); font-weight: 600; text-decoration: none; padding: .4rem 0; border-bottom: 2px solid transparent; }
   nav ul a:hover { color: var(--on-navy); border-bottom-color: var(--green); }
 
-  /* Header */
   .hero { position: relative; overflow: hidden; background: linear-gradient(160deg, var(--navy) 55%, var(--navy-2)); color: var(--on-navy); padding: 5.5rem 0 6rem; }
   .hero .chart { position: absolute; inset: auto 0 0 0; width: 100%; height: 55%; opacity: .5; pointer-events: none; }
   .hero .wrap { position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 4rem; align-items: center; }
@@ -48,11 +46,12 @@
   .btn.solid { background: var(--green); color: #fff; }
   .btn.line { border: 2px solid #3a5169; color: var(--on-navy); }
   .btn:hover { filter: brightness(1.12); }
-  .portrait { justify-self: center; position: relative; width: min(20rem, 70vw); aspect-ratio: 1; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 10px rgba(255,255,255,.07), 0 24px 60px rgba(0,0,0,.4); overflow: hidden; display: grid; place-items: center; }
-  .portrait span { position: absolute; font-size: 6rem; font-weight: 800; color: rgba(255,255,255,.85); }
-  .portrait img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
 
-  /* Sections */
+  /* Headshot: image fills the circle by absolute positioning, so it cannot collapse to zero height */
+  .portrait { justify-self: center; position: relative; width: min(20rem, 70vw); aspect-ratio: 1 / 1; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 10px rgba(255,255,255,.07), 0 24px 60px rgba(0,0,0,.4); overflow: hidden; }
+  .portrait .initial { position: absolute; inset: 0; display: grid; place-items: center; font-size: 6rem; font-weight: 800; color: rgba(255,255,255,.85); }
+  .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
+
   section { padding: 5rem 0; }
   section.alt { background: var(--card); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -0.025em; font-weight: 800; margin: 0 0 .6rem; }
@@ -79,7 +78,6 @@
   .edu h3 { margin: 0; font-size: 1.3rem; }
   .edu p { margin: .2rem 0 0; color: var(--muted); }
 
-  /* Contact */
   .contact { background: var(--navy); color: var(--on-navy); text-align: center; padding: 5rem 0 3rem; }
   .contact h2 { margin-bottom: .8rem; }
   .contact .intro { color: var(--on-navy-muted); margin: 0 auto 2rem; }
@@ -123,15 +121,15 @@
       <p class="kicker">Finance student at Rutgers</p>
       <h1>Hi, I'm Tyler.</h1>
       <!-- PERSONAL STATEMENT: keep it to one sentence. -->
-      <p class="statement">I'm a <strong>finance student and self-taught Python developer</strong> who builds data-driven tools for trading and market analysis.</p>
+      <p class="statement">I'm a <strong>finance student at Rutgers</strong> who analyzes markets and financial data, and builds my own tools to test investment ideas.</p>
       <div class="actions">
         <a class="btn solid" href="#projects">View my projects</a>
         <a class="btn line" href="#contact">Get in touch</a>
       </div>
     </div>
     <div class="portrait">
-      <span aria-hidden="true">T</span>
-      <img src="headshot.jpg" alt="Headshot of Tyler" onerror="this.remove()">
+      <div class="initial" aria-hidden="true">T</div>
+      <img id="headshot" alt="Headshot of Tyler" width="600" height="600">
     </div>
   </div>
 </header>
@@ -140,33 +138,34 @@
   <section id="skills">
     <div class="wrap">
       <h2>Skills</h2>
-      <p class="intro">The tools and ways of thinking I bring to a finance team.</p>
+      <p class="intro">What I bring to a finance or accounting team.</p>
       <div class="cards">
-        <div class="card">
-          <h3>Technical</h3>
-          <ul class="tags">
-            <li>Python</li>
-            <li>Data analysis</li>
-            <li>Backtesting</li>
-            <li>API integration</li>
-            <li>Git and GitHub</li>
-          </ul>
-        </div>
         <div class="card">
           <h3>Finance</h3>
           <ul class="tags">
             <li>Financial markets</li>
-            <li>Options and volatility</li>
+            <li>Valuation</li>
             <li>Risk management</li>
-            <li>Position sizing</li>
+            <li>Portfolio and position sizing</li>
+            <li>Options and volatility</li>
           </ul>
         </div>
         <div class="card">
-          <h3>Professional</h3>
+          <h3>Accounting and Analysis</h3>
           <ul class="tags">
-            <li>Independent problem solving</li>
-            <li>Debugging and iteration</li>
-            <li>Self-directed learning</li>
+            <li>Financial statement analysis</li>
+            <li>Accounting fundamentals</li>
+            <li>Ratio analysis</li>
+            <li>Forecasting</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Tools</h3>
+          <ul class="tags">
+            <li>Excel</li>
+            <li>Python</li>
+            <li>Data analysis</li>
+            <li>Git and GitHub</li>
           </ul>
         </div>
       </div>
@@ -176,31 +175,31 @@
   <section id="projects" class="alt">
     <div class="wrap">
       <h2>Projects</h2>
-      <p class="intro">Tools I built to test ideas and manage risk in the markets.</p>
+      <p class="intro">Hands-on work applying finance concepts to real market data.</p>
       <div class="cards">
 
         <article class="card project">
-          <ul class="tags stack"><li>Python</li><li>Alpaca API</li></ul>
-          <h3>Options Trading Algorithm</h3>
-          <p>Trades options using volatility forecasts (GARCH), a fitted volatility surface, and portfolio risk limits, and was validated with a walk-forward backtester.</p>
+          <ul class="tags stack"><li>Derivatives</li><li>Risk management</li></ul>
+          <h3>Options Trading Strategy</h3>
+          <p>Researched and tested an options strategy using volatility forecasts, a fitted volatility surface, and portfolio risk limits, then validated it with walk-forward backtesting. Built in Python.</p>
           <!-- Swap the link below for this project's own repo once it is public -->
-          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
+          <a class="more" href="https://github.com/tls248-dotcom">View on GitHub</a>
         </article>
 
         <article class="card project">
-          <ul class="tags stack"><li>Python</li><li>The Odds API</li></ul>
-          <h3>Sports Betting Value Finder</h3>
-          <p>Compares odds across sportsbooks to find positive expected value bets, removes the bookmaker's margin, and sizes stakes with the Kelly criterion.</p>
+          <ul class="tags stack"><li>Probability</li><li>Position sizing</li></ul>
+          <h3>Expected Value Analysis Tool</h3>
+          <p>Compares prices across sources to find positive expected value opportunities, removes built-in margin, and sizes positions with the Kelly criterion. Built in Python.</p>
           <!-- Swap the link below for this project's own repo once it is public -->
-          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
+          <a class="more" href="https://github.com/tls248-dotcom">View on GitHub</a>
         </article>
 
         <article class="card project">
-          <ul class="tags stack"><li>Python</li><li>Interactive Brokers API</li></ul>
-          <h3>Small-Cap Momentum Trading Bot</h3>
-          <p>Scans for small-cap momentum setups and places trades automatically, tested on a paper trading account before any real use.</p>
+          <ul class="tags stack"><li>Equities</li><li>Trade execution</li></ul>
+          <h3>Small-Cap Momentum Strategy</h3>
+          <p>Screens small-cap stocks for momentum setups and places trades automatically, tested on a paper trading account before any real use. Built in Python.</p>
           <!-- Swap the link below for this project's own repo once it is public -->
-          <a class="more" href="https://github.com/tls248-dotcom">View code on GitHub</a>
+          <a class="more" href="https://github.com/tls248-dotcom">View on GitHub</a>
         </article>
 
       </div>
@@ -216,7 +215,7 @@
         <div>
           <h3>Rutgers University</h3>
           <p>Finance, expected graduation May 2029</p>
-          <p>Building hands-on Python projects in trading and market analysis alongside my coursework.</p>
+          <p>Applying coursework to hands-on projects in markets and financial analysis.</p>
         </div>
       </div>
     </div>
@@ -226,7 +225,7 @@
 <footer class="contact" id="contact">
   <div class="wrap">
     <h2>Let's connect</h2>
-    <p class="intro">Looking for internships and finance roles. See my code on GitHub.</p>
+    <p class="intro">Looking for internships in finance and accounting. See my work on GitHub.</p>
     <!-- To add your email, add another button:
          <a class="btn line" href="mailto:your-email@example.com">Email me</a> -->
     <a class="btn solid" href="https://github.com/tls248-dotcom">GitHub profile</a>
@@ -234,6 +233,20 @@
   </div>
 </footer>
 
-<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Headshot: tries common file names and extensions; falls back to the "T" circle if none load.
+  (function () {
+    var img = document.getElementById("headshot");
+    var names = ["headshot.jpg", "headshot.jpeg", "headshot.JPG", "headshot.JPEG", "headshot.png", "Headshot.jpg", "Headshot.jpeg", "Headshot.png"];
+    var i = 0;
+    img.onerror = function () {
+      i++;
+      if (i < names.length) { img.src = names[i]; } else { img.remove(); }
+    };
+    img.src = names[0];
+  })();
+</script>
 </body>
 </html>
