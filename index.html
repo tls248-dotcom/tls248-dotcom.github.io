@@ -47,7 +47,6 @@
   .btn.line { border: 2px solid #3a5169; color: var(--on-navy); }
   .btn:hover { filter: brightness(1.12); }
 
-  /* Headshot: image fills the circle by absolute positioning, so it cannot collapse to zero height */
   .portrait { justify-self: center; position: relative; width: min(20rem, 70vw); aspect-ratio: 1 / 1; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 10px rgba(255,255,255,.07), 0 24px 60px rgba(0,0,0,.4); overflow: hidden; }
   .portrait .initial { position: absolute; inset: 0; display: grid; place-items: center; font-size: 6rem; font-weight: 800; color: rgba(255,255,255,.85); }
   .portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%; }
@@ -179,17 +178,16 @@
       <div class="cards">
 
         <article class="card project">
-          <ul class="tags stack"><li>Derivatives</li><li>Risk management</li></ul>
-          <h3>Options Trading Strategy</h3>
-          <p>Researched and tested an options strategy using volatility forecasts, a fitted volatility surface, and portfolio risk limits, then validated it with walk-forward backtesting. Built in Python.</p>
-          <!-- Swap the link below for this project's own repo once it is public -->
-          <a class="more" href="https://github.com/tls248-dotcom">View on GitHub</a>
+          <ul class="tags stack"><li>Financial statements</li><li>Ratio analysis</li></ul>
+          <h3>Two-Company Financial Statement Comparison</h3>
+          <p>An interactive tool that compares two companies on liquidity, profitability, leverage, and efficiency, with a DuPont breakdown of return on equity.</p>
+          <a class="more" href="comparison.html">Try the tool</a>
         </article>
 
         <article class="card project">
-          <ul class="tags stack"><li>Probability</li><li>Position sizing</li></ul>
-          <h3>Expected Value Analysis Tool</h3>
-          <p>Compares prices across sources to find positive expected value opportunities, removes built-in margin, and sizes positions with the Kelly criterion. Built in Python.</p>
+          <ul class="tags stack"><li>Derivatives</li><li>Risk management</li></ul>
+          <h3>Options Trading Strategy</h3>
+          <p>Researched and tested an options strategy using volatility forecasts, a fitted volatility surface, and portfolio risk limits, then validated it with walk-forward backtesting. Built in Python.</p>
           <!-- Swap the link below for this project's own repo once it is public -->
           <a class="more" href="https://github.com/tls248-dotcom">View on GitHub</a>
         </article>
