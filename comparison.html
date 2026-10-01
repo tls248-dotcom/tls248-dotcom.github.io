@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Two-Company Financial Statement Comparison | Tyler</title>
+<meta name="description" content="Compare two companies on liquidity, profitability, leverage, and efficiency using financial statement ratios and a DuPont breakdown.">
+<style>
+  :root { --navy:#0d1b2a; --ink:#10202f; --muted:#55677a; --bg:#f4f7fa; --card:#fff; --line:#dce4ec; --green:#0e8f63; --soft:#e0f3ea; --warn:#fff4d6; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:1.0625rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  a { color:var(--green); }
+  a:focus-visible, button:focus-visible, input:focus-visible { outline:3px solid var(--green); outline-offset:2px; }
+  header { background:var(--navy); color:#eef3f8; padding:2.5rem 0 2.75rem; }
+  .wrap { max-width:60rem; margin:0 auto; padding:0 1.5rem; }
+  header a { color:#6fe0b4; font-weight:600; text-decoration:none; }
+  h1 { font-size:clamp(1.9rem,5vw,2.8rem); line-height:1.1; letter-spacing:-.025em; margin:.8rem 0 .6rem; }
+  header p { color:#9db2c6; margin:0; max-width:40rem; }
+  h2 { font-size:1.5rem; letter-spacing:-.02em; margin:2.5rem 0 .8rem; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1.4rem; }
+  .note { background:var(--warn); border-radius:8px; padding:.7rem 1rem; margin:1rem 0 0; font-size:.97rem; }
+  .names { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.2rem; }
+  label { display:block; font-weight:600; font-size:.93rem; margin-bottom:.25rem; }
+  input { width:100%; padding:.55rem .7rem; border:1px solid var(--line); border-radius:6px; font:inherit; background:#fff; color:var(--ink); }
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:.4rem 1rem; }
+  .grid h3 { grid-column:1/-1; margin:.9rem 0 .1rem; font-size:1rem; color:var(--green); }
+  .actions { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:1.4rem; }
+  button { font:inherit; font-weight:700; padding:.7rem 1.3rem; border-radius:8px; cursor:pointer; border:2px solid var(--green); }
+  .primary { background:var(--green); color:#fff; }
+  .ghost { background:transparent; color:var(--green); }
+  #msg { margin-top:1rem; font-weight:600; }
+  .scroll { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--line); }
+  th, td { padding:.65rem .85rem; text-align:right; border-bottom:1px solid var(--line); }
+  th:first-child, td:first-child { text-align:left; }
+  thead th { background:var(--navy); color:#eef3f8; }
+  tr.grp td { background:var(--bg); font-weight:700; color:var(--green); text-align:left; }
+  td.win { background:var(--soft); font-weight:700; }
+  .small { color:var(--muted); font-size:.93rem; }
+  footer { padding:2.5rem 0; color:var(--muted); font-size:.93rem; }
+  @media (max-width:36rem) { .names, .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="index.html">&larr; Back to portfolio</a>
+    <h1>Two-Company Financial Statement Comparison</h1>
+    <p>Enter figures from each company's income statement and balance sheet to compare liquidity, profitability, leverage, and efficiency.</p>
+  </div>
+</header>
+
+<main class="wrap">
+  <h2>1. Enter the data</h2>
+  <div class="card">
+    <div class="names">
+      <div><label for="nameA">Company A name</label><input id="nameA" type="text" placeholder="e.g. Company A"></div>
+      <div><label for="nameB">Company B name</label><input id="nameB" type="text" placeholder="e.g. Company B"></div>
+    </div>
+    <div class="grid" id="fields"></div>
+    <div class="actions">
+      <button class="primary" id="go" type="button">Compare</button>
+      <button class="ghost" id="sample" type="button">Load sample data</button>
+      <button class="ghost" id="clear" type="button">Clear</button>
+    </div>
+    <p id="msg" role="status"></p>
+    <p class="note">Enter all amounts in the same units (such as $ millions) for the same fiscal year. Pull them from each company's 10-K on <a href="https://www.sec.gov/edgar/search/">SEC EDGAR</a>. The sample data is hypothetical.</p>
+  </div>
+
+  <div id="results" hidden>
+    <h2>2. Results</h2>
+    <p id="summary"></p>
+    <div class="scroll"><table><thead><tr><th>Ratio</th><th id="hA"></th><th id="hB"></th></tr></thead><tbody id="body"></tbody></table></div>
+    <p class="small">Shaded cells mark the stronger company on that measure. Ratios use year-end balances, and the quick ratio is approximated as (cash + receivables) / current liabilities.</p>
+
+    <h2>3. DuPont breakdown of ROE</h2>
+    <div class="scroll"><table><thead><tr><th>Component</th><th id="dA"></th><th id="dB"></th></tr></thead><tbody id="dupont"></tbody></table></div>
+    <p class="small">ROE = net margin &times; asset turnover &times; equity multiplier. It shows whether returns come from profitability, efficiency, or leverage.</p>
+    <p class="note">Ratios only compare well within the same industry. A grocer and a software company have structurally different margins and balance sheets.</p>
+  </div>
+</main>
+
+<footer><div class="wrap">Educational tool. Not investment advice.</div></footer>
+
+<script>
+var F = [
+  ["Income statement"],
+  ["rev","Revenue"],["cogs","Cost of goods sold"],["opinc","Operating income"],["intexp","Interest expense"],["ni","Net income"],
+  ["Balance sheet"],
+  ["cash","Cash and equivalents"],["ar","Accounts receivable"],["inv","Inventory"],["ca","Total current assets"],["ta","Total assets"],["cl","Total current liabilities"],["tl","Total liabilities"],["eq","Total shareholders' equity"]
+];
+var SAMPLE = {
+  A:{rev:1200,cogs:720,opinc:150,intexp:20,ni:95,cash:80,ar:110,inv:160,ca:380,ta:900,cl:260,tl:520,eq:380},
+  B:{rev:900,cogs:450,opinc:180,intexp:10,ni:135,cash:200,ar:90,inv:70,ca:400,ta:800,cl:180,tl:300,eq:500}
+};
+var R = [
+  ["Liquidity"],
+  ["Current ratio","x",1,function(d){return d.ca/d.cl;}],
+  ["Quick ratio","x",1,function(d){return (d.cash+d.ar)/d.cl;}],
+  ["Profitability"],
+  ["Gross margin","%",1,function(d){return (d.rev-d.cogs)/d.rev;}],
+  ["Operating margin","%",1,function(d){return d.opinc/d.rev;}],
+  ["Net margin","%",1,function(d){return d.ni/d.rev;}],
+  ["Return on assets","%",1,function(d){return d.ni/d.ta;}],
+  ["Return on equity","%",1,function(d){return d.ni/d.eq;}],
+  ["Leverage"],
+  ["Debt-to-equity (liabilities / equity)","x",0,function(d){return d.tl/d.eq;}],
+  ["Debt-to-assets","%",0,function(d){return d.tl/d.ta;}],
+  ["Interest coverage (operating income / interest)","x",1,function(d){return d.intexp>0?d.opinc/d.intexp:NaN;}],
+  ["Efficiency"],
+  ["Asset turnover","x",1,function(d){return d.rev/d.ta;}],
+  ["Inventory turnover (COGS / inventory)","x",1,function(d){return d.inv>0?d.cogs/d.inv:NaN;}],
+  ["Days sales outstanding","d",0,function(d){return d.ar/d.rev*365;}]
+];
+var $ = function(id){return document.getElementById(id);};
+
+// Build the input grid: one column per company
+var box = $("fields");
+F.forEach(function(f){
+  if (f.length === 1) { var h = document.createElement("h3"); h.textContent = f[0]; box.appendChild(h); return; }
+  ["A","B"].forEach(function(c){
+    var w = document.createElement("div");
+    w.innerHTML = '<label for="'+f[0]+c+'">'+f[1]+' (Company '+c+')</label><input id="'+f[0]+c+'" type="number" step="any" inputmode="decimal">';
+    box.appendChild(w);
+  });
+});
+
+function read(c){
+  var d = {}, ok = true;
+  F.forEach(function(f){
+    if (f.length === 1) return;
+    var v = parseFloat($(f[0]+c).value);
+    if (isNaN(v)) ok = false;
+    d[f[0]] = v;
+  });
+  return ok ? d : null;
+}
+function fmt(v,t){
+  if (!isFinite(v)) return "n/a";
+  if (t==="%") return (v*100).toFixed(1)+"%";
+  if (t==="d") return v.toFixed(0)+" days";
+  return v.toFixed(2)+"x";
+}
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+
+function compare(){
+  var msg = $("msg"), a = read("A"), b = read("B");
+  if (!a || !b) { msg.textContent = "Please fill in every field for both companies, or load the sample data."; $("results").hidden = true; return; }
+  var nA = esc($("nameA").value.trim() || "Company A"), nB = esc($("nameB").value.trim() || "Company B");
+  var warn = [];
+  [[a,nA],[b,nB]].forEach(function(p){
+    if (Math.abs(p[0].ta-(p[0].tl+p[0].eq)) > 0.01*p[0].ta) warn.push(p[1]+": total assets do not equal liabilities plus equity.");
+  });
+  msg.textContent = warn.length ? "Check your inputs. " + warn.join(" ") : "";
+  $("hA").innerHTML = nA; $("hB").innerHTML = nB; $("dA").innerHTML = nA; $("dB").innerHTML = nB;
+
+  var rows = "", wa = 0, wb = 0, total = 0;
+  R.forEach(function(r){
+    if (r.length === 1) { rows += '<tr class="grp"><td colspan="3">'+r[0]+'</td></tr>'; return; }
+    var x = r[3](a), y = r[3](b), cx = "", cy = "";
+    if (isFinite(x) && isFinite(y) && x !== y) {
+      total++;
+      var aWins = r[2] ? x > y : x < y;
+      if (aWins) { cx = "win"; wa++; } else { cy = "win"; wb++; }
+    }
+    rows += '<tr><td>'+r[0]+'</td><td class="'+cx+'">'+fmt(x,r[1])+'</td><td class="'+cy+'">'+fmt(y,r[1])+'</td></tr>';
+  });
+  $("body").innerHTML = rows;
+  $("summary").innerHTML = '<strong>'+nA+'</strong> is stronger on '+wa+' of '+total+' measures and <strong>'+nB+'</strong> on '+wb+'. A higher count is not automatically better, so read the individual ratios.';
+
+  function du(d){ return [d.ni/d.rev, d.rev/d.ta, d.ta/d.eq]; }
+  var x = du(a), y = du(b);
+  $("dupont").innerHTML =
+    '<tr><td>Net margin</td><td>'+fmt(x[0],"%")+'</td><td>'+fmt(y[0],"%")+'</td></tr>' +
+    '<tr><td>&times; Asset turnover</td><td>'+fmt(x[1],"x")+'</td><td>'+fmt(y[1],"x")+'</td></tr>' +
+    '<tr><td>&times; Equity multiplier (assets / equity)</td><td>'+fmt(x[2],"x")+'</td><td>'+fmt(y[2],"x")+'</td></tr>' +
+    '<tr><td><strong>= Return on equity</strong></td><td><strong>'+fmt(x[0]*x[1]*x[2],"%")+'</strong></td><td><strong>'+fmt(y[0]*y[1]*y[2],"%")+'</strong></td></tr>';
+  $("results").hidden = false;
+  $("results").scrollIntoView({behavior:"smooth"});
+}
+function setAll(vals){
+  ["A","B"].forEach(function(c){ F.forEach(function(f){ if (f.length>1) $(f[0]+c).value = vals ? vals[c][f[0]] : ""; }); });
+}
+$("go").onclick = compare;
+$("sample").onclick = function(){ setAll(SAMPLE); $("nameA").value = "Sample Co. A"; $("nameB").value = "Sample Co. B"; compare(); };
+$("clear").onclick = function(){ setAll(null); $("nameA").value = ""; $("nameB").value = ""; $("msg").textContent = ""; $("results").hidden = true; };
+</script>
+</body>
+</html>
